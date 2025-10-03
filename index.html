@@ -6,39 +6,54 @@
   <title>Lifting Equipment Specialist — PT. Contoh Lifting</title>
   <meta name="description" content="Supplier & specialist lifting equipment: hoist, sling, wire rope, hooks, trolleys, rigging hardware." />
   <style>
-    :root{--accent:#0b66b2;--accent-2:#0a4a7a;--muted:#666}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0;color:#222;line-height:1.45}
-    header{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:20px 24px}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    .brand{display:flex;gap:16px;align-items:center}
-    .brand img{height:48px}
-    nav{margin-left:auto}
-    nav a{color:#fff;margin-left:16px;text-decoration:none;font-weight:600}
+    :root { --accent:#0b66b2; --accent-2:#0a4a7a; --muted:#666; }
+    * { box-sizing: border-box; }
+    body { font-family: Inter, system-ui, Arial; margin:0; color:#222; line-height:1.45; }
+    header { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff; padding:20px 24px; }
+    .container { max-width:1100px; margin:0 auto; padding:24px; }
+    .brand { display:flex; gap:16px; align-items:center; }
+    .brand img { height:48px; }
+    nav { margin-left:auto; }
+    nav a { color:#fff; margin-left:16px; text-decoration:none; font-weight:600; }
 
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:56px 0}
-    .hero h1{font-size:28px;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .cta{display:inline-block;background:#fff;color:var(--accent-2);padding:12px 18px;border-radius:8px;font-weight:700;text-decoration:none}
-    .hero .hero-img{background:#f6f8fb;border-radius:12px;padding:12px;text-align:center}
-    .hero .hero-img img{max-width:100%;height:320px;object-fit:contain}
+    .hero { display:grid; grid-template-columns:1fr 420px; gap:32px; align-items:center; padding:56px 0; }
+    .hero h1 { font-size:28px; margin:0 0 12px; }
+    .hero p { color:var(--muted); margin:0 0 18px; }
+    .cta { display:inline-block; background:#fff; color:var(--accent-2); padding:12px 18px; border-radius:8px; font-weight:700; text-decoration:none; }
+    .hero .hero-img { background:#f6f8fb; border-radius:12px; padding:12px; text-align:center; }
+    .hero .hero-img img { max-width:100%; height:320px; object-fit:contain; }
 
-    .features{display:flex;gap:12px;margin:28px 0}
-    .feature{background:#fff;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(10,20,30,.06);flex:1}
-    .feature h4{margin:0 0 8px}
-    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin:28px 0}
-    .card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 8px 30px rgba(10,20,30,.06);display:flex;flex-direction:column}
-    .card img{height:160px;object-fit:contain;border-radius:6px;background:#f7f9fb}
-    .card .meta{padding:10px 0}
-    .card h3{margin:6px 0 4px;font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:14px}
-    .price{margin-top:auto;font-weight:700}
+    .features { display:flex; gap:12px; margin:28px 0; }
+    .feature { background:#fff; padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(10,20,30,.06); flex:1; }
+    .feature h4 { margin:0 0 8px; }
 
-    footer{background:#0f1720;color:#cbd5e1;padding:28px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .gallery { margin:40px 0; }
+    .gallery h2 { margin-bottom:16px; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px; }
+    .gallery-item { overflow:hidden; border-radius:10px; position:relative; cursor:pointer; }
+    .gallery-item img { width:100%; height:160px; object-fit:cover; display:block; transition:transform .3s; }
+    .gallery-item:hover img { transform:scale(1.05); }
 
-    /* responsive */
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}.brand img{height:40px}}
+    /* lightbox */
+    #lightbox { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.8); display:none; justify-content:center; align-items:center; z-index:9999; }
+    #lightbox img { max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,.5); }
+
+    .products { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px; margin:28px 0; }
+    .card { background:#fff; border-radius:10px; padding:12px; box-shadow:0 8px 30px rgba(10,20,30,.06); display:flex; flex-direction:column; }
+    .card img { height:160px; object-fit:contain; border-radius:6px; background:#f7f9fb; }
+    .card .meta { padding:10px 0; }
+    .card h3 { margin:6px 0 4px; font-size:16px; }
+    .card p { margin:0; color:var(--muted); font-size:14px; }
+    .price { margin-top:auto; font-weight:700; }
+
+    footer { background:#0f1720; color:#cbd5e1; padding:28px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; }
+      .grid-3 { grid-template-columns:1fr; }
+      .brand img { height:40px; }
+    }
   </style>
 </head>
 <body>
@@ -46,6 +61,7 @@
     <div class="container brand">
       <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='40'><rect width='160' height='40' fill='%230b66b2'/><text x='14' y='26' font-family='Arial' font-size='16' fill='white'>PT Contoh Lifting</text></svg>" alt="logo"/>
       <nav>
+        <a href="#gallery">Gallery</a>
         <a href="#products">Products</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
@@ -77,8 +93,17 @@
       </div>
 
       <div class="hero-img">
-        <!-- Ganti src berikut dengan gambar produk asli atau CDN perusahaan -->
-        <img src="https://via.placeholder.com/600x360?text=Hoist+and+Rigging+Equipment" alt="hoist and lifting equipment"/>
+        <img src="https://images.openai.com/thumbnails/fcab2376d816a85827d578fa2747f802.jpeg" alt="hoist and lifting equipment"/>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <h2>Gallery Produk</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.openai.com/thumbnails/fcab2376d816a85827d578fa2747f802.jpeg" alt="Harrington RY 3 Ton Electric Hoist"></div>
+        <div class="gallery-item"><img src="https://images.openai.com/thumbnails/b7f19463d03a55cc1e6ae207882d5cf0.jpeg" alt="Spacemaster SX Wire Rope Hoist"></div>
+        <div class="gallery-item"><img src="https://images.openai.com/thumbnails/0cc1bc0d0c84c0af9b6badc57b0a2f04.jpeg" alt="Low Headroom Wire Rope Hoist"></div>
+        <div class="gallery-item"><img src="https://images.openai.com/thumbnails/0a01d18a4853f2f4fb1ab2bb05980b89.jpeg" alt="Harrington RY Electric Wire Rope Hoist"></div>
       </div>
     </section>
 
@@ -100,7 +125,7 @@
             <h3>Wire Rope — Galvanized & Stainless</h3>
             <p>Berbagai diameter & konstruksi, untuk keperluan crane, winch, dan sling.</p>
           </div>
-          <div class="price">Stok &sertifikat tersedia</div>
+          <div class="price">Stok & sertifikat tersedia</div>
         </article>
 
         <article class="card">
@@ -120,7 +145,6 @@
           </div>
           <div class="price">Tersedia sparepart</div>
         </article>
-
       </div>
     </section>
 
@@ -167,5 +191,20 @@
       </div>
     </div>
   </footer>
+
+  <div id="lightbox"><img src="" alt="preview"/></div>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
